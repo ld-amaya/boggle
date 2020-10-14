@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %} Boogle Game {% endblock %}
+{% block content %}
+<h1>Boogle Game</h1>
+<h4>Time remaining: <span id='your_time'></span> secs</h3>
+    <span id="display"></span> <br />
+    <table>
+        {% for board in boards %}
+        <tr>
+            {% for letter in board %}
+            <td>{{letter}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <p>
+        <form method="POST" class="addWord">
+            <input type="text name=" answer" class="word" placeholder="enter word" autofocus>
+            <button>Submit</button>
+        </form>
+    </p>
+    <p>
+        <h3>Your Current Score: <span id='your_score'></span></h3>
+        <h4>Current highscore: {{highscore}}</h4>
+        <h4>Total games played: {{games}}</h4>
+    </p>
+    {% endblock %}
