@@ -7,7 +7,7 @@ thisTimer = setInterval(() => {
     myTimer -= 1;
     $("#your_time").text(myTimer);
     if (myTimer === 0) {
-        // Timer stops when it reaches zero 
+        // Timer stops when it reaches zero then store the score to session
         clearInterval(thisTimer);
         storeScore();
     }
@@ -34,8 +34,7 @@ $('.addWord').on('submit', async (e) => {
         if (CheckWord(myWord)) {
             $("#display").text(`You have already entered ${myWord.toUpperCase()}`)
         } else {
-            $("#your_score").text(getScore(myWord));
-            $("#display").text(`You scored ${myWord.length}`)
+            getScore(myWord)
             word_list.push(myWord);
         }
 
@@ -47,7 +46,10 @@ $('.addWord').on('submit', async (e) => {
 });
 
 function getScore(myWord) {
-    return score += myWord.length;
+    // Display the word score and update the total score 
+    score += myWord.length;
+    $("#display").text(`You scored ${myWord.length}`)
+    $("#your_score").text(score);
 }
 
 function CheckWord(myWord) {
